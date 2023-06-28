@@ -39,12 +39,13 @@ async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 if __name__ == '__main__':
     application = ApplicationBuilder().token('5939815261:AAEIx_QxWyJnCAT4t0wB67b_ri8zdcHBCjw').build()
-    echo_handler = MessageHandler(filters.TEXT & (~filters.COMMAND), echo)
-    caps_handler = CommandHandler('caps', caps)
     start_handler = CommandHandler('start', start)
     gay_handler = CommandHandler('itsokaytobegay', gay)
+    echo_handler = MessageHandler(filters.TEXT & (~filters.COMMAND), echo)
+    caps_handler = CommandHandler('caps', caps)
     inline_caps_handler = InlineQueryHandler(inline_caps)
     unknown_handler = MessageHandler(filters.COMMAND, unknown)
+
     application.add_handler(start_handler)
     application.add_handler(gay_handler)
     application.add_handler(echo_handler)
