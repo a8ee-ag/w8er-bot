@@ -1,4 +1,4 @@
-# w8er-bot
+# Для себя
 python3 -m venv некоторый текст <br>
 source путь в венве до acticate <br>
 <br>
