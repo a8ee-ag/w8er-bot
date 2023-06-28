@@ -38,7 +38,9 @@ async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text="Напиши нормальную команду...")
 
 if __name__ == '__main__':
-    application = ApplicationBuilder().token('5939815261:AAEIx_QxWyJnCAT4t0wB67b_ri8zdcHBCjw').build()
+    with open ('token.txt', 'r') as file:
+        token = file.read().strip()
+    application = ApplicationBuilder().token(token).build()
     start_handler = CommandHandler('start', start)
     gay_handler = CommandHandler('itsokaytobegay', gay)
     echo_handler = MessageHandler(filters.TEXT & (~filters.COMMAND), echo)
