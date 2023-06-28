@@ -10,6 +10,9 @@ logging.basicConfig(
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text="Ну привет что ли")
 
+async def gay(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await context.bot.send_message(chat_id=update.effective_chat.id, text="Со всяким бывает....")
+
 async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text=update.message.text)
 
@@ -39,9 +42,11 @@ if __name__ == '__main__':
     echo_handler = MessageHandler(filters.TEXT & (~filters.COMMAND), echo)
     caps_handler = CommandHandler('caps', caps)
     start_handler = CommandHandler('start', start)
+    gay_handler = CommandHandler('itsokaytobegay', gay)
     inline_caps_handler = InlineQueryHandler(inline_caps)
     unknown_handler = MessageHandler(filters.COMMAND, unknown)
     application.add_handler(start_handler)
+    application.add_handler(gay_handler)
     application.add_handler(echo_handler)
     application.add_handler(caps_handler)
     application.add_handler(inline_caps_handler)
