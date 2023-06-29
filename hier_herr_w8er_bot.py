@@ -32,16 +32,19 @@ if __name__ == '__main__':
     with open ('token.txt', 'r') as file:
         token = file.read().strip()
     application = ApplicationBuilder().token(token).build()
+    
     gay_handler = CommandHandler('itsokaytobegay', gay)
     date_handler = CommandHandler('date', date)
     hh_handler = CommandHandler('hh', hh)
     nap_handler = CommandHandler('naputstvie', nap)
+    ost_handler = CommandHandler('ostalos', ost)
     unknown_handler = MessageHandler(filters.COMMAND, unknown)
 
     application.add_handler(gay_handler)
+    application.add_handler(date_handler)
     application.add_handler(hh_handler)
     application.add_handler(nap_handler)
-    application.add_handler(date_handler)
+    application.add_handler(ost_handler)
     application.add_handler(unknown_handler)
     
     application.run_polling()
