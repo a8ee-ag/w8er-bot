@@ -1,6 +1,6 @@
 import pytz
 import locale
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from telegram import Update, InlineQueryResultArticle, InputTextMessageContent
 from telegram.ext import filters, ApplicationBuilder, ContextTypes, CommandHandler, MessageHandler, InlineQueryHandler
 ########################################################################################################################
@@ -32,6 +32,14 @@ async def ost(update: Update, context: ContextTypes.DEFAULT_TYPE):
     sec = diff.seconds%60
     await context.bot.send_message(chat_id=update.effective_chat.id, text = "Товарищ уехал в армию уже как {} дней {} часов {} минут {} секунд".format(days, hours, min, sec))
 ########################################################################################################################
+async def left(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    tz = pytz.timezone('Europe/Moscow')
+    lf = tz.localize(datetime(2024, 6, 29, 3, 1, 0))
+    now = datetime.now(tz)
+    diff = lf - now
+    days = diff.days
+    await context.bot.send_message(chat_id=update.effective_chat.id, text = "До возвращения Товарища осталось примерно {} дней".format(days))
+########################################################################################################################
 async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text="Напиши нормальную команду...")
 ########################################################################################################################
@@ -45,6 +53,7 @@ if __name__ == '__main__':
     hh_handler = CommandHandler('hh', hh)
     nap_handler = CommandHandler('nap', nap)
     ost_handler = CommandHandler('ost', ost)
+    left_handler = CommandHandler('left', left)
     unknown_handler = MessageHandler(filters.COMMAND, unknown)
 
     application.add_handler(gay_handler)
@@ -52,6 +61,7 @@ if __name__ == '__main__':
     application.add_handler(hh_handler)
     application.add_handler(nap_handler)
     application.add_handler(ost_handler)
+    application.add_handler(left_handler)
     application.add_handler(unknown_handler)
     
     application.run_polling()
