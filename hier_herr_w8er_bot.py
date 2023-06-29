@@ -22,6 +22,10 @@ async def hh(update: Update, context: ContextTypes.DEFAULT_TYPE):
     trfdcv = datetime(2023, 6, 29, 3, 1, 0)
     await context.bot.send_message(chat_id=update.effective_chat.id, text= trfdcv.strftime("Уехал в армию %d %B %Y в %H:%M, это был затянутый тучами депрессивный %A"))
 ########################################################################################################################
+async def nap(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    trfdcv = datetime(2023, 6, 29, 3, 1, 0)
+    await context.bot.send_message(chat_id=update.effective_chat.id, text= "Мое вам последнее напутствие." "\n" "В New Vegas и 3 фолыче можно толкать браминов, нажав на них клавишу действия, находясь в режиме скрытности")
+########################################################################################################################
 async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text="Напиши нормальную команду...")
 ########################################################################################################################
@@ -32,10 +36,12 @@ if __name__ == '__main__':
     gay_handler = CommandHandler('itsokaytobegay', gay)
     date_handler = CommandHandler('date', date)
     hh_handler = CommandHandler('hh', hh)
+    nap_handler = CommandHandler('naputstvie', nap)
     unknown_handler = MessageHandler(filters.COMMAND, unknown)
 
     application.add_handler(gay_handler)
     application.add_handler(hh_handler)
+    application.add_handler(nap_handler)
     application.add_handler(date_handler)
     application.add_handler(unknown_handler)
     
