@@ -24,7 +24,7 @@ async def hh(update: Update, context: ContextTypes.DEFAULT_TYPE):
 ########################################################################################################################
 async def nap(update: Update, context: ContextTypes.DEFAULT_TYPE):
     trfdcv = datetime(2023, 6, 29, 3, 1, 0)
-    await context.bot.send_message(chat_id=update.effective_chat.id, text= "Мое вам последнее напутствие." "\n" "В New Vegas и 3 фолыче можно толкать браминов, нажав на них клавишу действия, находясь в режиме скрытности")
+    await context.bot.send_message(chat_id=update.effective_chat.id, text= " «Мое вам последнее напутствие." "\n" "В New Vegas и 3 фолыче можно толкать браминов, нажав на них клавишу действия, находясь в режиме скрытности»" "\n" "© Товарищ Hier Herr ")
 ########################################################################################################################
 async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text="Напиши нормальную команду...")
