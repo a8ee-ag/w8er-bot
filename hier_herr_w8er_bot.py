@@ -12,7 +12,7 @@ async def gay(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def date(update: Update, context: ContextTypes.DEFAULT_TYPE):
     tz = pytz.timezone('Europe/Moscow')
     now = datetime.now(tz)
-    await context.bot.send_message(chat_id=update.effective_chat.id, text = now.strftime("Во ты дурик, дату сегодняшнюю забыл, ладно, напомню" "\n" "%d %B %Y (%A)"))
+    await context.bot.send_message(chat_id=update.effective_chat.id, text = now.strftime("Во ты дурик, дату сегодняшнюю забыл, ладно, напомню" "\n" "%d %B %Y (Если ты совсем потерялся, то сегодня %A)"))
 ########################################################################################################################
 async def hh(update: Update, context: ContextTypes.DEFAULT_TYPE):
     hh = datetime(2023, 6, 29, 3, 1, 0)
