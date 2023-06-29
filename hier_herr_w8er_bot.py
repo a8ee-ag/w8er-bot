@@ -1,30 +1,29 @@
 import pytz
 import locale
-from datetime import datetime, date
-import logging
+from datetime import datetime
 from telegram import Update, InlineQueryResultArticle, InputTextMessageContent
 from telegram.ext import filters, ApplicationBuilder, ContextTypes, CommandHandler, MessageHandler, InlineQueryHandler
 ########################################################################################################################
 locale.setlocale(locale.LC_ALL, "ru_RU.UTF-8")
 ########################################################################################################################
-logging.basicConfig(
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
-########################################################################################################################
 async def gay(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await context.bot.send_message(chat_id=update.effective_chat.id, text="Ко мне или к тебе?))")
+    await context.bot.send_message(chat_id=update.effective_chat.id, text = "Ко мне или к тебе?))")
 ########################################################################################################################
 async def date(update: Update, context: ContextTypes.DEFAULT_TYPE):
     tz = pytz.timezone('Europe/Moscow')
     now = datetime.now(tz)
-    await context.bot.send_message(chat_id=update.effective_chat.id, text= now.strftime("%d %B %Y (%A)"))
+    await context.bot.send_message(chat_id=update.effective_chat.id, text = now.strftime("Во ты дурик, дату сегодняшнюю забыл, ладно, напомню" "\n" "%d %B %Y (%A)"))
 ########################################################################################################################
 async def hh(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    trfdcv = datetime(2023, 6, 29, 3, 1, 0)
-    await context.bot.send_message(chat_id=update.effective_chat.id, text= trfdcv.strftime("Уехал в армию %d %B %Y в %H:%M, это был затянутый тучами депрессивный %A"))
+    hh = datetime(2023, 6, 29, 3, 1, 0)
+    await context.bot.send_message(chat_id=update.effective_chat.id, text = hh.strftime("Уехал в армию %d %B %Y в %H:%M, это был затянутый тучами депрессивный %A"))
 ########################################################################################################################
 async def nap(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    trfdcv = datetime(2023, 6, 29, 3, 1, 0)
-    await context.bot.send_message(chat_id=update.effective_chat.id, text= " «Мое вам последнее напутствие." "\n" "В New Vegas и 3 фолыче можно толкать браминов, нажав на них клавишу действия, находясь в режиме скрытности»" "\n" "© Товарищ Hier Herr ")
+    await context.bot.send_message(chat_id=update.effective_chat.id, text = " «Мое вам последнее напутствие." "\n" "В New Vegas и 3 фолыче можно толкать браминов, нажав на них клавишу действия, находясь в режиме скрытности»" "\n" "© Товарищ hier Herr ")
+########################################################################################################################
+async def ost(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+    await context.bot.send_message(chat_id=update.effective_chat.id, text =)
 ########################################################################################################################
 async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text="Напиши нормальную команду...")
