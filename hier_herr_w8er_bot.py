@@ -134,7 +134,6 @@ if __name__ == '__main__':
     with open ('tokens/token.txt', 'r') as file:
         token = file.read().strip()
     application = ApplicationBuilder().token(token).build()
-
     gay_handler = CommandHandler('itsokaytobegay', gay)
     date_handler = CommandHandler('date', date)
     hh_handler = CommandHandler('hh', hh)
@@ -143,7 +142,6 @@ if __name__ == '__main__':
     left_handler = CommandHandler('left', left)
     img_handler = CommandHandler('cdt', img)
     unknown_handler = MessageHandler(filters.COMMAND, unknown)
-
     application.add_handler(gay_handler)
     application.add_handler(date_handler)
     application.add_handler(hh_handler)
