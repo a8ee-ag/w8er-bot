@@ -2,7 +2,7 @@ import pytz
 import locale
 from datetime import datetime, date
 from telegram import Update
-from telegram.ext import filters, ApplicationBuilder, ContextTypes, CommandHandler, MessageHandler, CallbackContext
+from telegram.ext import filters, ApplicationBuilder, ContextTypes, CommandHandler, MessageHandler
 ########################################################################################################################
 locale.setlocale(locale.LC_ALL, "ru_RU.UTF-8")
 ########################################################################################################################
@@ -150,6 +150,5 @@ if __name__ == '__main__':
     application.add_handler(left_handler)
     application.add_handler(img_handler)
     application.add_handler(unknown_handler)
-    
     application.run_polling()
 ########################################################################################################################
