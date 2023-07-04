@@ -131,7 +131,7 @@ async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text="Напиши нормальную команду...")
 ########################################################################################################################
 if __name__ == '__main__':
-    with open ('token2.txt', 'r') as file:
+    with open ('tokens/token.txt', 'r') as file:
         token = file.read().strip()
     application = ApplicationBuilder().token(token).build()
 
