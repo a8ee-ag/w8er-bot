@@ -1,5 +1,8 @@
 import pytz
 import locale
+import random
+import datetime
+import time
 from datetime import datetime, date
 from telegram import Update
 from telegram.ext import filters, ApplicationBuilder, ContextTypes, CommandHandler, MessageHandler
@@ -127,11 +130,22 @@ async def img(update: Update, context: ContextTypes.DEFAULT_TYPE):
     img_path = "img/bmp2.jpg"
     await context.bot.send_photo(chat_id=update.effective_chat.id, caption = message, photo = open(img_path, "rb"))
 ########################################################################################################################
+async def re_msg(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    n = random.randint(1, 12)
+    n = str(n)
+    m = random.randint(1, 12)
+    m = str(m)
+    message = "txt/" + m + ".txt"
+    img_path = "img/rnd_igm/" + n + ".jpg"
+    with open (message, "r") as msg_path:
+        msg = msg_path.read().strip()
+    await context.bot.send_photo(chat_id=update.effective_chat.id, caption = msg, photo = open(img_path, "rb"))
+########################################################################################################################
 async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text="Напиши нормальную команду...")
 ########################################################################################################################
 if __name__ == '__main__':
-    with open ('tokens/token.txt', 'r') as file:
+    with open ('tokens/token2.txt', 'r') as file:
         token = file.read().strip()
     application = ApplicationBuilder().token(token).build()
     gay_handler = CommandHandler('itsokaytobegay', gay)
@@ -141,6 +155,7 @@ if __name__ == '__main__':
     ost_handler = CommandHandler('ost', ost)
     left_handler = CommandHandler('left', left)
     img_handler = CommandHandler('cdt', img)
+    re_msg_handler = CommandHandler('pnm', re_msg)
     unknown_handler = MessageHandler(filters.COMMAND, unknown)
     application.add_handler(gay_handler)
     application.add_handler(date_handler)
@@ -149,6 +164,7 @@ if __name__ == '__main__':
     application.add_handler(ost_handler)
     application.add_handler(left_handler)
     application.add_handler(img_handler)
+    application.add_handler(re_msg_handler)
     application.add_handler(unknown_handler)
     application.run_polling()
 ########################################################################################################################
