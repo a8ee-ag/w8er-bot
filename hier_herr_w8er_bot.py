@@ -1,17 +1,24 @@
 import pytz
 import locale
 import random
-import datetime
 import time
+import datetime
+import asyncio
 from datetime import datetime, date
-from telegram import Update
-from telegram.ext import filters, ApplicationBuilder, ContextTypes, CommandHandler, MessageHandler
-########################################################################################################################
+from telegram import Update, Bot
+from telegram.ext import filters, ApplicationBuilder, ContextTypes, CommandHandler, MessageHandler, CallbackContext
+
+
+
 locale.setlocale(locale.LC_ALL, "ru_RU.UTF-8")
-########################################################################################################################
+
+
+
 async def gay(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text = "Ко мне или к тебе?))")
-########################################################################################################################
+
+
+
 async def date(update: Update, context: ContextTypes.DEFAULT_TYPE):
     def day_word():
         tz = pytz.timezone('Europe/Moscow')
@@ -37,13 +44,19 @@ async def date(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     message = "Сегодня " + now + " " + date_now + " года. А если интересен день недели, то сегодня " + week_day
     await context.bot.send_message(chat_id=update.effective_chat.id, text = message)
-########################################################################################################################
+
+
+
 async def hh(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text = "Уехал в армию 29 июля 2023 года в 3:01 утра")
-########################################################################################################################
+
+
+
 async def nap(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text = " «Мое вам последнее напутствие." "\n" "В New Vegas и 3 фолыче можно толкать браминов, нажав на них клавишу действия, находясь в режиме скрытности»" "\n" "© Товарищ hier Herr ")
-########################################################################################################################
+
+
+
 async def ost(update: Update, context: ContextTypes.DEFAULT_TYPE):
     tz = pytz.timezone('Europe/Moscow')
     now = datetime.now(tz)
@@ -103,7 +116,9 @@ async def ost(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     massage = "Товарищ уехал в армию " + dAys + " " + qday + hours + " " + qhour + min + " " + qmin + "и "+ sec + " " + qsec + "назад"
     await context.bot.send_message(chat_id=update.effective_chat.id, text = massage)
-########################################################################################################################
+
+
+
 async def left(update: Update, context: ContextTypes.DEFAULT_TYPE):
     tz = pytz.timezone('Europe/Moscow')
     lf = tz.localize(datetime(2024, 6, 29, 3, 1, 0))
@@ -124,26 +139,39 @@ async def left(update: Update, context: ContextTypes.DEFAULT_TYPE):
         
     massage = "До возвращения Товарища осталось примерно " + dAys + date
     await context.bot.send_message(chat_id=update.effective_chat.id, text = massage)
-########################################################################################################################
+
+
+
 async def img(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = "Я сейчас сижу за рулем БМП-2"
     img_path = "img/bmp2.jpg"
     await context.bot.send_photo(chat_id=update.effective_chat.id, caption = message, photo = open(img_path, "rb"))
-########################################################################################################################
-async def re_msg(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    n = random.randint(1, 12)
-    n = str(n)
-    m = random.randint(1, 12)
-    m = str(m)
-    message = "txt/" + m + ".txt"
-    img_path = "img/rnd_igm/" + n + ".jpg"
-    with open (message, "r") as msg_path:
-        msg = msg_path.read().strip()
-    await context.bot.send_photo(chat_id=update.effective_chat.id, caption = msg, photo = open(img_path, "rb"))
-########################################################################################################################
+
+
+
+async def re_msg(update: Update, context: CallbackContext):
+    while True:
+        n = random.randint(1, 12)
+        n = str(n)
+        m = random.randint(1, 16)
+        m = str(m)
+        message = "txt/" + m + ".txt"
+        img_path = "img/rnd_igm/" + n + ".jpg"
+        with open (message, "r") as msg_path:
+            msg = msg_path.read().strip()
+        with open ('tokens/token2.txt', 'r') as file:
+            token = file.read().strip()
+        bot = Bot(token)
+        await context.bot.send_photo(chat_id=update.effective_chat.id, caption = msg, photo = open(img_path, "rb"))
+        time.sleep(1*1*1)
+
+
+
 async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text="Напиши нормальную команду...")
-########################################################################################################################
+
+
+
 if __name__ == '__main__':
     with open ('tokens/token2.txt', 'r') as file:
         token = file.read().strip()
@@ -155,7 +183,7 @@ if __name__ == '__main__':
     ost_handler = CommandHandler('ost', ost)
     left_handler = CommandHandler('left', left)
     img_handler = CommandHandler('cdt', img)
-    re_msg_handler = CommandHandler('pnm', re_msg)
+    re_msg_handler = CommandHandler('start', re_msg)
     unknown_handler = MessageHandler(filters.COMMAND, unknown)
     application.add_handler(gay_handler)
     application.add_handler(date_handler)
@@ -167,4 +195,3 @@ if __name__ == '__main__':
     application.add_handler(re_msg_handler)
     application.add_handler(unknown_handler)
     application.run_polling()
-########################################################################################################################
