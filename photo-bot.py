@@ -19,15 +19,15 @@ async def re_msg(update: Update, context: CallbackContext):
         img_path = "img/rnd_igm/" + n + ".jpg"
         with open (message, "r") as msg_path:
             msg = msg_path.read().strip()
-        with open ('tokens/token2.txt', 'r') as file:
+        with open ('tokens/token.txt', 'r') as file:
             token = file.read().strip()
         bot = Bot(token)
         await context.bot.send_photo(chat_id=update.effective_chat.id, caption = msg, photo = open(img_path, "rb"))
-        time.sleep(1*1*1)
+        time.sleep(1*60*60)
         
 
 if __name__ == '__main__':
-    with open ('tokens/token2.txt', 'r') as file:
+    with open ('tokens/token.txt', 'r') as file:
         token = file.read().strip()
     application = ApplicationBuilder().token(token).build()
 

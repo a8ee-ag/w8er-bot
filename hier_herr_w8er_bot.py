@@ -155,7 +155,7 @@ async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 if __name__ == '__main__':
-    with open ('tokens/token2.txt', 'r') as file:
+    with open ('tokens/token.txt', 'r') as file:
         token = file.read().strip()
     application = ApplicationBuilder().token(token).build()
     gay_handler = CommandHandler('itsokaytobegay', gay)
@@ -165,7 +165,6 @@ if __name__ == '__main__':
     ost_handler = CommandHandler('ost', ost)
     left_handler = CommandHandler('left', left)
     img_handler = CommandHandler('cdt', img)
-    re_msg_handler = CommandHandler('start', re_msg)
     unknown_handler = MessageHandler(filters.COMMAND, unknown)
     application.add_handler(gay_handler)
     application.add_handler(date_handler)
@@ -174,6 +173,5 @@ if __name__ == '__main__':
     application.add_handler(ost_handler)
     application.add_handler(left_handler)
     application.add_handler(img_handler)
-    application.add_handler(re_msg_handler)
     application.add_handler(unknown_handler)
     application.run_polling()
