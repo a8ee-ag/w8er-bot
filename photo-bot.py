@@ -11,7 +11,7 @@ from telegram.ext import filters, ApplicationBuilder, ContextTypes, CommandHandl
 
 async def re_msg(update: Update, context: CallbackContext):
     while True:
-        n = random.randint(1, 12)
+        n = random.randint(1, 14)
         n = str(n)
         m = random.randint(1, 17)
         m = str(m)
@@ -31,7 +31,7 @@ if __name__ == '__main__':
         token = file.read().strip()
     application = ApplicationBuilder().token(token).build()
 
-    re_msg_handler = CommandHandler('start', re_msg)
+    re_msg_handler = CommandHandler('cerf', re_msg)
 
     application.add_handler(re_msg_handler)
     application.run_polling()
